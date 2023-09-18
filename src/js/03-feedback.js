@@ -10,22 +10,42 @@ const FORM_KEY = "feedback-form-state";
 
 const formData = JSON.parse(localStorage.getItem(FORM_KEY)) || {};
 
-checkForm();
+// checkForm();
 
 function onInputForm(evt) {
     formData[evt.target.name] = evt.target.value;
+    // const { email, message } = form.elements;
+    // const data = {
+    //     mail: email.value,
+    //     message: message.value,
+    // }
   
     
     localStorage.setItem(FORM_KEY, JSON.stringify(formData));
 }
 
-function checkForm() {
-    const { email, message } = form.elements;
-     if (formData) {
-         email.value = formData.email || "";
-         message.value = formData.message || "";
+ if (formData) {
+        
+         
+         for (let key in formData) {
+             form.elements[key].value = formData[key];
+       
+         }
      }
-}
+
+// function checkForm() {
+//     // const { email, message } = form.elements;
+//      if (formData) {
+//         //  email.value = formData.email || "";
+        
+//         //  message.value = formData.message || "";
+         
+//          for (let key in formData) {
+//              form.elements[key].value = formData[key];
+       
+//          }
+//      }
+// }
 
 function onSubmitForm(evt) {
     evt.preventDefault();
@@ -35,6 +55,7 @@ function onSubmitForm(evt) {
      };
      console.log(formData);
      evt.target.reset();
-     localStorage.removeItem(FORM_KEY);
+    localStorage.removeItem(FORM_KEY);
+    
 }
 
