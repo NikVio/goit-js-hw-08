@@ -11,7 +11,7 @@ form.addEventListener('submit', onSubmitForm);
 
 const FORM_KEY = "feedback-form-state";
 
-
+checkForm();
 
 function onInputForm(evt) {
     formData[evt.target.name] = evt.target.value;
@@ -19,7 +19,8 @@ function onInputForm(evt) {
  
 }
  
-if (LS.getItem(FORM_KEY)) {
+function checkForm() {
+    if (LS.getItem(FORM_KEY)) {
     formData = JSON.parse(LS.getItem(FORM_KEY))
     
     for (let key in formData) {
@@ -27,6 +28,7 @@ if (LS.getItem(FORM_KEY)) {
     }
 
   
+}
 }
 
 
